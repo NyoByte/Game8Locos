@@ -1,20 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
 
     <pe.edu.ulima.game_8_locos.views.CardTableView
         android:id="@+id/fviCardTable"
-        android:layout_width="200dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:ratio="1.5"
+        app:srcCompat="@drawable/example" />
+
+    <pe.edu.ulima.game_8_locos.views.CardTableView
+        android:id="@+id/cardTableView"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/cardTableView2"
+        app:layout_constraintTop_toTopOf="@+id/cardTableView2"
+        app:ratio="1.5"
+        app:srcCompat="@drawable/example" />
+
+    <pe.edu.ulima.game_8_locos.views.CardTableView
+        android:id="@+id/cardTableView2"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/cardTableView3"
+        app:layout_constraintTop_toTopOf="@+id/cardTableView3"
+        app:ratio="1.5"
+        app:srcCompat="@drawable/example" />
+
+    <pe.edu.ulima.game_8_locos.views.CardTableView
+        android:id="@+id/cardTableView3"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/cardTableView4"
+        app:layout_constraintTop_toTopOf="@+id/cardTableView4"
+        app:ratio="1.5"
+        app:srcCompat="@drawable/example" />
+
+    <pe.edu.ulima.game_8_locos.views.CardTableView
+        android:id="@+id/cardTableView5"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="@+id/fviCardTable"
+        app:layout_constraintTop_toBottomOf="@+id/fviCardTable"
+        app:ratio="1.5"
+        app:srcCompat="@drawable/example" />
+
+    <pe.edu.ulima.game_8_locos.views.CardTableView
+        android:id="@+id/cardTableView4"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@+id/fviCardTable"
+        app:layout_constraintTop_toBottomOf="@+id/fviCardTable"
+        app:ratio="1.5"
+        app:srcCompat="@drawable/example" />
+
+    <pe.edu.ulima.game_8_locos.views.CardTableView
+        android:id="@+id/cardTableView7"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toEndOf="@+id/cardTableView5"
+        app:layout_constraintTop_toTopOf="@+id/cardTableView5"
+        app:ratio="1.5"
+        app:srcCompat="@drawable/example" />
+
+    <pe.edu.ulima.game_8_locos.views.CardTableView
+        android:id="@+id/cardTableView8"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toEndOf="@+id/cardTableView7"
+        app:layout_constraintTop_toTopOf="@+id/cardTableView7"
+        app:ratio="1.5"
+        app:srcCompat="@drawable/example" />
+
+    <pe.edu.ulima.game_8_locos.views.CardTableView
+        android:id="@+id/cardTableView6"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toEndOf="@+id/cardTableView8"
+        app:layout_constraintTop_toTopOf="@+id/cardTableView8"
         app:ratio="1.5"
         app:srcCompat="@drawable/example" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
