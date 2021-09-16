@@ -5,15 +5,15 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import pe.edu.ulima.game_8_locos.R
 
-class CardTableView @JvmOverloads constructor(
+class ApectRatioImageView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int =0
 ) : AppCompatImageView(context, attrs, defStyleAttr) {
 
     var ratio:Float = 1f
 
     init {
-        val a = context.obtainStyledAttributes(attrs, R.styleable.CardTableView)
-        ratio = a.getFloat(R.styleable.CardTableView_ratio, 1f)
+        val a = context.obtainStyledAttributes(attrs, R.styleable.AspectRatioImageView)
+        ratio = a.getFloat(R.styleable.AspectRatioImageView_ratio, 1f)
         a.recycle()
     }
 

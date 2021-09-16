@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:parentTag="LinearLayout">
+
+    <pe.edu.ulima.game_8_locos.views.ApectRatioImageView
+        android:id="@+id/aviCover"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:ratio="1.5"
+        app:srcCompat="@drawable/example" />
+
+    <TextView
+        android:id="@+id/tviValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="visible"
+        tools:text="valor" />
+
+    <TextView
+        android:id="@+id/tviSuit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="visible"
+        tools:text="suit" />
+
+</merge>
