@@ -10,7 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        println("es: ")
         val card1 = findViewById<CardView>(R.id.card1)
-        card1.setCard(CardActivity("A","corazon"))
+        card1.setCard(CardActivity("8","espada"))
     }
 }

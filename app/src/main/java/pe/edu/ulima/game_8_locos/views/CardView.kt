@@ -26,6 +26,15 @@ class CardView @JvmOverloads constructor(
 
     fun setCard(card: CardActivity){
         this.valor.text = card.valor
+        if(card.suit=="coco"){
+            println("coco")
+        }else if(card.suit=="corazon"){
+            println("corazon")
+        }else if(card.suit=="espada"){
+            println("espada")
+        }else{
+            println("trebol")
+        }
         //this.suit.image = card.suit
     }
 }

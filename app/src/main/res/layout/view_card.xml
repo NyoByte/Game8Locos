@@ -10,9 +10,9 @@
 
     <TableLayout
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/border"
-        android:scaleType="centerCrop">
+        android:scaleType="matrix">
 
         <TableRow
             android:layout_width="wrap_content"
@@ -21,43 +21,45 @@
 
             <pe.edu.ulima.game_8_locos.views.ApectRatioImageView
                 android:id="@+id/aviSuitUp"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
                 app:ratio="1"
-                app:srcCompat="@drawable/coco" />
+                app:srcCompat="@drawable/corazoncito" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="98dp"
+            android:layout_height="60dp"
             android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/tviValor"
-                android:layout_width="70dp"
-                android:layout_height="80dp"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
                 android:fontFamily="serif"
                 android:gravity="center"
+                android:padding="0dp"
                 android:textAlignment="center"
                 android:textColor="#00BCD4"
-                android:textSize="60sp"
-                tools:text="8" />
+                android:textSize="50sp"
+                tools:text="Q" />
         </TableRow>
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:gravity="end">
 
             <pe.edu.ulima.game_8_locos.views.ApectRatioImageView
                 android:id="@+id/aviSuitDown"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:rotationX="180"
                 app:ratio="1"
-                app:srcCompat="@drawable/coco" />
+                app:srcCompat="@drawable/corazoncito" />
         </TableRow>
 
     </TableLayout>
