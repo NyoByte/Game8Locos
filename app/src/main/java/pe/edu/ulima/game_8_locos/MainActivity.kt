@@ -12,6 +12,6 @@ class MainActivity : AppCompatActivity() {
 
         println("es: ")
         val card1 = findViewById<CardView>(R.id.card1)
-        card1.setCard(CardActivity("8","espada"))
+        card1.setCard(CardActivity("8","trebol"))
     }
 }
