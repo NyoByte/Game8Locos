@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val card1 = findViewById<CardView>(R.id.cardView5)
-        card1.setCard(CardActivity("8","corazon","http://"))
+        val card1 = findViewById<CardView>(R.id.card1)
+        card1.setCard(CardActivity("A","corazon"))
     }
 }
