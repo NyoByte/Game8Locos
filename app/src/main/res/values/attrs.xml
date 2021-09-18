@@ -3,4 +3,8 @@
     <declare-styleable name="AspectRatioImageView">
         <attr name="ratio" format="float" />
     </declare-styleable>
+    <declare-styleable name="CardView">
+        <attr name="suit" format="string" />
+        <attr name="valor" format="string" />
+    </declare-styleable>
 </resources>
