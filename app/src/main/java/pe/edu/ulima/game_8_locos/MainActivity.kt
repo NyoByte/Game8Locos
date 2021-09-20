@@ -1,18 +1,24 @@
 package pe.edu.ulima.game_8_locos
 
+import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.view.get
 import org.w3c.dom.Text
 import pe.edu.ulima.game_8_locos.views.ApectRatioImageView
 import pe.edu.ulima.game_8_locos.views.CardView
+import pe.edu.ulima.game_8_locos.views.OnCardClickListener
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.max
 import kotlin.math.min
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnCardClickListener {
     private var deck: MutableList<Card> = ArrayList()
     private var players:MutableList<Player> = ArrayList()
 
@@ -24,9 +30,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        println("es: ")
-        //val card1 = findViewById<CardView>(R.id.card1)
-        //card1.setCard(CardActivity("8","trebol"))
 
         //Crear las 52 cartas
         this.createDeck()
@@ -86,10 +89,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun showCards() {
         val currPlayer = players[this.turn]
-        for (i in 0..7){
+        // Cambiado a la catidad actual en mano
+        var iMax = currPlayer.hand.size - 1
+        for (i in 0..iMax){
             val resId = resources.getIdentifier("card"+(i+1), "id", packageName)
             val card: CardView = findViewById(resId)
             card.setCard(currPlayer.hand[i])
+            //OnClick en carta
+            card.setOnCardClickListener(this)
         }
     }
 
@@ -103,7 +110,6 @@ class MainActivity : AppCompatActivity() {
             Log.i("MainActivity", "Dealed ${currHand.size} to player $i")
         }
     }
-
 
     private fun createDeck() {
         for (i in 1..13){
@@ -140,6 +146,11 @@ class MainActivity : AppCompatActivity() {
         val greater = cards.filter { card -> card.valor > pivot.valor }
 
         return sortSameSuit(minor) + equal + sortSameSuit(greater)
+    }
+
+    override fun onClick(valor:String, suit:String) {
+        //Logica de click en carta
+        Toast.makeText(this, valor + " - " + suit   , Toast.LENGTH_LONG).show()
     }
 
 }

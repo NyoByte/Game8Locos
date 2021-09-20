@@ -8,6 +8,84 @@
     tools:context=".MainActivity" >
 
     <pe.edu.ulima.game_8_locos.views.CardView
+        android:id="@+id/card16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/card12"
+        app:layout_constraintStart_toEndOf="@+id/card15" />
+
+    <pe.edu.ulima.game_8_locos.views.CardView
+        android:id="@+id/card15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/card11"
+        app:layout_constraintStart_toEndOf="@+id/card14" />
+
+    <pe.edu.ulima.game_8_locos.views.CardView
+        android:id="@+id/card14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/card10"
+        app:layout_constraintStart_toEndOf="@+id/card13" />
+
+    <pe.edu.ulima.game_8_locos.views.CardView
+        android:id="@+id/card13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/card9"
+        app:layout_constraintStart_toStartOf="@+id/card9" />
+
+    <pe.edu.ulima.game_8_locos.views.CardView
+        android:id="@+id/card11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/card7"
+        app:layout_constraintStart_toEndOf="@+id/card10" />
+
+    <pe.edu.ulima.game_8_locos.views.CardView
+        android:id="@+id/card10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/card6"
+        app:layout_constraintStart_toEndOf="@+id/card9"
+        android:visibility="invisible" />
+
+    <pe.edu.ulima.game_8_locos.views.CardView
+        android:id="@+id/card12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/card8"
+        app:layout_constraintStart_toEndOf="@+id/card11" />
+
+    <pe.edu.ulima.game_8_locos.views.CardView
+        android:id="@+id/card9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/card5"
+        app:layout_constraintStart_toStartOf="@+id/card5" />
+
+    <pe.edu.ulima.game_8_locos.views.CardView
         android:id="@+id/card7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,10 +98,9 @@
         android:id="@+id/card5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/card1"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/card1" />
 
     <pe.edu.ulima.game_8_locos.views.CardView
         android:id="@+id/card6"
@@ -64,8 +141,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/card1"
         app:layout_constraintStart_toEndOf="@+id/card1"
+        app:layout_constraintTop_toTopOf="@+id/card1"
+        app:layout_constraintVertical_bias="0.0"
         app:suit="espada"
         app:valor="9" />
 
@@ -74,8 +153,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/card2"
         app:layout_constraintStart_toEndOf="@+id/card2" />
 
     <pe.edu.ulima.game_8_locos.views.CardView
@@ -83,8 +161,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/card3"
         app:layout_constraintStart_toEndOf="@+id/card3" />
 
     <pe.edu.ulima.game_8_locos.views.CardView
@@ -133,10 +210,10 @@
         android:id="@+id/btnDraw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Robar carta"
-        app:layout_constraintBottom_toTopOf="@+id/card8"
+        app:layout_constraintBottom_toTopOf="@+id/card16"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
@@ -154,9 +231,10 @@
         android:id="@+id/tviCurrPlayer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginBottom="8dp"
         android:text="Jugador actual"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btnSort"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -167,7 +245,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:text="Ordenar cartas"
-        app:layout_constraintBottom_toTopOf="@+id/card5"
+        app:layout_constraintBottom_toTopOf="@+id/card13"
         app:layout_constraintStart_toStartOf="parent" />
 
 

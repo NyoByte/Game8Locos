@@ -31,7 +31,7 @@
             android:textAlignment="center"
             android:textColor="#00BCD4"
             android:textSize="40sp"
-            tools:text="Q" />
+            tools:text="10" />
 
         <pe.edu.ulima.game_8_locos.views.ApectRatioImageView
             android:id="@+id/aviSuitDown"
