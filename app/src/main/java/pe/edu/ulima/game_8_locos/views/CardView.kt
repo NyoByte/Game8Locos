@@ -25,7 +25,7 @@ class CardView @JvmOverloads constructor(
     private val valor: TextView
     private val suitDown: ApectRatioImageView
     private var listener:OnCardClickListener? = null
-    private var suitC:String
+    private var suit:String
 
     init {
         val view = LayoutInflater.from(context).inflate(R.layout.view_card, this,true)
@@ -38,7 +38,7 @@ class CardView @JvmOverloads constructor(
         val a = context.obtainStyledAttributes(attrs, R.styleable.CardView)
 
         val suit = a.getString(R.styleable.CardView_suit)
-        this.suitC = suit.toString()
+        this.suit = suit.toString()
         when(suit){
             "coco" -> {
                 this.suitUp.setImageResource(R.drawable.coco)
@@ -65,7 +65,7 @@ class CardView @JvmOverloads constructor(
     }
 
     fun setCard(card: Card){
-        this.suitC = card.suit
+        this.suit = card.suit
 
         when (card.suit) {
             "coco" -> {
@@ -110,8 +110,16 @@ class CardView @JvmOverloads constructor(
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         Log.i("CardView","TouchEvent")
-        listener?.onClick(this.valor.text.toString(), this.suitC)
+        listener?.onClick(getValor(), getSuit())
         invalidate()
         return super.onTouchEvent(event)
+    }
+
+    fun getValor(): String {
+        return this.valor.text.toString()
+    }
+
+    fun getSuit(): String {
+        return this.suit
     }
 }

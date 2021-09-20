@@ -176,7 +176,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:text="previous page"
         app:layout_constraintBottom_toTopOf="@+id/card5"
         app:layout_constraintStart_toStartOf="parent" />
@@ -186,7 +186,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:text="next page"
         app:layout_constraintBottom_toTopOf="@+id/card8"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
             }else{
                 this.turn = 0
             }
+            findViewById<TextView>(R.id.tviCurrPlayer).text = this.players[this.turn].name
             this.showCards()
             this.showRemainingCards()
         }
@@ -167,7 +168,31 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
 
     override fun onClick(valor:String, suit:String) {
         //Logica de click en carta
-        Toast.makeText(this, valor + " - " + suit   , Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, valor + " - " + suit   , Toast.LENGTH_LONG).show()
+        var cardTable:CardView = findViewById(R.id.cardTable)
+        if(suit==cardTable.getSuit()){
+            jugarCarta(valor, suit)
+        }else{
+            if(valor==cardTable.getValor()){
+                jugarCarta(valor, suit)
+            }else{
+                Toast.makeText(this,"Debe robar 1 carta", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun jugarCarta(valor:String, suit:String){
+        var cardTable:CardView = findViewById(R.id.cardTable)
+        var numValor:Int
+        when(valor){
+            "K" -> numValor=13
+            "Q" -> numValor=12
+            "J" -> numValor=11
+            "A" -> numValor=1
+            else -> numValor = Integer.parseInt(valor)
+        }
+        var newCard = Card(numValor,suit)
+        cardTable.setCard(newCard)
     }
 
 }
