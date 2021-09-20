@@ -62,6 +62,16 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
             this.players[this.turn].hand = this.sortCards(this.players[this.turn].hand).toMutableList()
             this.showCards()
         }
+
+        findViewById<Button>(R.id.btnPrevPage).setOnClickListener{_: View ->
+            this.players[this.turn].decreasePage()
+            this.showCards()
+        }
+
+        findViewById<Button>(R.id.btnNextPage).setOnClickListener{_: View ->
+            this.players[this.turn].increasePage()
+            this.showCards()
+        }
     }
 
     private fun placeCardOnTable() {
@@ -90,13 +100,20 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
     private fun showCards() {
         val currPlayer = players[this.turn]
         // Cambiado a la catidad actual en mano
-        var iMax = currPlayer.hand.size - 1
-        for (i in 0..iMax){
-            val resId = resources.getIdentifier("card"+(i+1), "id", packageName)
+        val actualPage = currPlayer.getPage()
+
+
+        for(i in 0..7){
+            val resId = resources.getIdentifier("card${i+1}", "id", packageName)
             val card: CardView = findViewById(resId)
-            card.setCard(currPlayer.hand[i])
-            //OnClick en carta
-            card.setOnCardClickListener(this)
+            if(i<actualPage.count()){
+                card.visibility = View.VISIBLE
+                card.setCard(actualPage[i])
+                //OnClick en carta
+                card.setOnCardClickListener(this)
+            }else{
+                card.visibility = View.INVISIBLE
+            }
         }
     }
 
