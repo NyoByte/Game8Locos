@@ -1,5 +1,6 @@
 package pe.edu.ulima.game_8_locos
 
+import android.content.Intent
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -248,8 +249,6 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
             } else {
                 if (valor == cardTable.getValor()) {
                     jugarCarta(valor, suit)
-                } else {
-                    Toast.makeText(this, "Debe robar 1 carta", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -269,9 +268,22 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         cardTable.setCard(newCard)
         val currPlayer = players[this.turn]
         currPlayer.hand.removeAt(currPlayer.buscarCarta(numValor, suit))
+        // Accion Ganar
+        if(currPlayer.hand.count()==0){
+            endGame()
+        }
         // Habilidades especiales
         specialCard(valor)
         findViewById<Button>(R.id.btnPass).callOnClick()
+    }
+
+    private fun endGame(){
+        // Reiniciar juego
+        val tempName = players[this.turn].name
+        Toast.makeText(this, "El $tempName ha ganado", Toast.LENGTH_LONG).show()
+        val intent: Intent = Intent()
+        intent.setClass(this, MainActivity::class.java)
+        startActivity(intent)
     }
 
     private fun specialCard(valor:String){
