@@ -26,12 +26,12 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
 
     private var turn: Int = 0
 
-    
+    private var activePunishment:Boolean = false
+    private var cantPunishment:Int=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         //Crear las 52 cartas
         this.createDeck()
@@ -69,8 +69,31 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
             findViewById<Button>(R.id.btnPass).setEnabled(false)
             //Validar movimiento al cambiar de player
             if(!tieneMovimientos()){
-                Toast.makeText(this,"Debe robar 1 carta", Toast.LENGTH_LONG).show()
-                findViewById<Button>(R.id.btnDraw).setEnabled(true)
+                if(!activePunishment) {
+                    Toast.makeText(this, "Debe robar 1 carta", Toast.LENGTH_LONG).show()
+                    findViewById<Button>(R.id.btnDraw).setEnabled(true)
+                }else{
+                    Toast.makeText(this, "Debe robar $cantPunishment cartas", Toast.LENGTH_LONG).show()
+                    for(i in 0 until cantPunishment){
+                        this.players[this.turn].hand.add(this.deck.removeLast())
+                    }
+                    this.players[this.turn].setPages()
+                    this.showCards()
+                    this.showRemainingCards()
+                    activePunishment=false
+                    cantPunishment=0
+                    if(!tieneMovimientos()){
+                        Toast.makeText(this, "Debe robar 1 carta", Toast.LENGTH_LONG).show()
+                        findViewById<Button>(R.id.btnDraw).setEnabled(false)
+                        findViewById<Button>(R.id.btnPass).setEnabled(true)
+                    }
+                }
+            }else{
+                if(activePunishment){
+                    findViewById<Button>(R.id.btnDraw).setEnabled(true)
+                }else{
+                    findViewById<Button>(R.id.btnDraw).setEnabled(false)
+                }
             }
         }
 
@@ -95,11 +118,22 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         // Evento Robar una carta
         findViewById<Button>(R.id.btnDraw).setOnClickListener {_: View ->
             findViewById<Button>(R.id.btnDraw).setEnabled(false)
-            // Agregar card
-            this.players[this.turn].hand.add(this.deck.removeLast())
-            this.players[this.turn].setPages()
-            this.showCards()
-            this.showRemainingCards()
+            if(activePunishment){
+                for(i in 0 until cantPunishment){
+                    this.players[this.turn].hand.add(this.deck.removeLast())
+                }
+                this.players[this.turn].setPages()
+                this.showCards()
+                this.showRemainingCards()
+                activePunishment=false
+                cantPunishment=0
+            }else {
+                // Agregar card
+                this.players[this.turn].hand.add(this.deck.removeLast())
+                this.players[this.turn].setPages()
+                this.showCards()
+                this.showRemainingCards()
+            }
             findViewById<Button>(R.id.btnPass).setEnabled(true)
         }
     }
@@ -197,15 +231,22 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
 
     override fun onClick(valor:String, suit:String) {
         //Logica de click en carta
-        //Toast.makeText(this, valor + " - " + suit   , Toast.LENGTH_LONG).show()
         var cardTable:CardView = findViewById(R.id.cardTable)
-        if(suit==cardTable.getSuit()){
-            jugarCarta(valor, suit)
-        }else{
+        if(activePunishment){
             if(valor==cardTable.getValor()){
-                jugarCarta(valor, suit)
+                jugarCarta(valor,suit)
             }else{
-                Toast.makeText(this,"Debe robar 1 carta", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Puede aumentar el castigo o robar cartas", Toast.LENGTH_LONG).show()
+            }
+        }else {
+            if (suit == cardTable.getSuit()) {
+                jugarCarta(valor, suit)
+            } else {
+                if (valor == cardTable.getValor()) {
+                    jugarCarta(valor, suit)
+                } else {
+                    Toast.makeText(this, "Debe robar 1 carta", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
@@ -231,8 +272,10 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
 
     private fun specialCard(valor:String){
         if(valor=="K"){
-
+            activePunishment=true
+            cantPunishment+=3
         }
+        // valor == Q +2 en cant no implementado por alcance
         if(valor=="J"){
             if(this.turn < this.players.size - 1){
                 this.turn += 1
@@ -246,15 +289,23 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         val cardTable: CardView = findViewById(R.id.cardTable)
         var mov=false
         val currPlayer = players[this.turn]
-
-        for(i in 0 until currPlayer.hand.size){
-            var currCard = currPlayer.hand[i]
-            if (currCard.suit == cardTable.getSuit()){
-                mov=true
-                break
-            }else{
-                if (currCard.valor == cardTable.getValorNum()){
+        if (activePunishment){
+            for(i in 0 until currPlayer.hand.size){
+                var currCard = currPlayer.hand[i]
+                if (currCard.valor == 13){
                     mov=true
+                }
+            }
+        }else{
+            for(i in 0 until currPlayer.hand.size){
+                var currCard = currPlayer.hand[i]
+                if (currCard.suit == cardTable.getSuit()){
+                    mov=true
+                    break
+                }else{
+                    if (currCard.valor == cardTable.getValorNum()){
+                        mov=true
+                    }
                 }
             }
         }
