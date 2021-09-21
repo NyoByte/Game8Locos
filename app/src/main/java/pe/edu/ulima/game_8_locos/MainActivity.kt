@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         findViewById<Button>(R.id.btnPass).setOnClickListener {_: View ->
             if(this.players[this.turn].hand.count()==1){
                 val tempName = this.players[this.turn].name
-                Toast.makeText(this,"$tempName va por una carta", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"El $tempName va por una", Toast.LENGTH_LONG).show()
             }
             if(this.turn < this.players.size - 1){
                 this.turn += 1
@@ -299,6 +299,9 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
                 this.turn = 0
             }
         }
+        // Repetidas patito
+        // * Analizar si hay cartas del mismo valor repetidas
+        //
     }
 
     private fun tieneMovimientos():Boolean {
