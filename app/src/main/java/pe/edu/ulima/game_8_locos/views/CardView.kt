@@ -122,4 +122,16 @@ class CardView @JvmOverloads constructor(
     fun getSuit(): String {
         return this.suit
     }
+
+    fun getValorNum():Int{
+        var numValor:Int
+        when(this.valor.text.toString()){
+            "K" -> numValor=13
+            "Q" -> numValor=12
+            "J" -> numValor=11
+            "A" -> numValor=1
+            else -> numValor = Integer.parseInt(this.valor.text.toString())
+        }
+        return numValor
+    }
 }

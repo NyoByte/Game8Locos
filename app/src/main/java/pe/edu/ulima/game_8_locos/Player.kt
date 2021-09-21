@@ -2,7 +2,7 @@ package pe.edu.ulima.game_8_locos
 
 import kotlin.math.min
 
-class Player(val num: Int, val name: String, var hand: List<Card>) {
+class Player(val num: Int, val name: String, var hand: MutableList<Card>) {
     private var pages: Int? = null
     private var currPage: Int? = null
     init {
@@ -32,5 +32,15 @@ class Player(val num: Int, val name: String, var hand: List<Card>) {
 
     public fun lastPage(){
         this.currPage = this.pages?.minus(1)
+    }
+
+    fun buscarCarta(valor: Int, suit: String):Int{
+        var cod:Int = 0
+        for(i in 0 until this.hand.size-1){
+            if(this.hand[i].valor==valor && this.hand[i].suit==suit){
+                cod = i
+            }
+        }
+        return cod
     }
 }

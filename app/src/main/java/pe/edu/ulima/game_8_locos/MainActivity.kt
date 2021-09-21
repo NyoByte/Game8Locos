@@ -47,7 +47,13 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         this.showCards()
         //Mostrar num de cartas de los otros jugadores y del maso
         this.showRemainingCards()
-
+        //Validar movimiento al iniciar
+        if(!tieneMovimientos()){
+            Toast.makeText(this,"Debe robar 1 carta", Toast.LENGTH_LONG).show()
+            findViewById<Button>(R.id.btnDraw).setEnabled(true)
+            findViewById<Button>(R.id.btnPass).setEnabled(true)
+        }
+        //Evento Pasar Turno
         findViewById<Button>(R.id.btnPass).setOnClickListener {_: View ->
             if(this.turn < this.players.size - 1){
                 this.turn += 1
@@ -57,18 +63,29 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
             findViewById<TextView>(R.id.tviCurrPlayer).text = this.players[this.turn].name
             this.showCards()
             this.showRemainingCards()
+            //Desactivar Button
+            findViewById<Button>(R.id.btnPass).setEnabled(false)
+            //Validar movimiento al cambiar de player
+            if(!tieneMovimientos()){
+                Toast.makeText(this,"Debe robar 1 carta", Toast.LENGTH_LONG).show()
+                findViewById<Button>(R.id.btnDraw).setEnabled(true)
+                findViewById<Button>(R.id.btnPass).setEnabled(true)
+            }
         }
 
+        // Evento Ordenar
         findViewById<Button>(R.id.btnSort).setOnClickListener {_: View ->
             this.players[this.turn].hand = this.sortCards(this.players[this.turn].hand).toMutableList()
             this.showCards()
         }
 
+        // Evento Página anterior
         findViewById<Button>(R.id.btnPrevPage).setOnClickListener{_: View ->
             this.players[this.turn].decreasePage()
             this.showCards()
         }
 
+        // Evento Página siguiente
         findViewById<Button>(R.id.btnNextPage).setOnClickListener{_: View ->
             this.players[this.turn].increasePage()
             this.showCards()
@@ -193,6 +210,28 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         }
         var newCard = Card(numValor,suit)
         cardTable.setCard(newCard)
+        //
+        val currPlayer = players[this.turn]
+        currPlayer.hand.removeAt(currPlayer.buscarCarta(numValor, suit))
+        findViewById<Button>(R.id.btnPass).callOnClick()
+    }
+
+    private fun tieneMovimientos():Boolean {
+        val cardTable: CardView = findViewById(R.id.cardTable)
+        var mov=false
+        val currPlayer = players[this.turn]
+        for(i in 0 until currPlayer.hand.size){
+            var currCard = currPlayer.hand[i]
+            if (currCard.suit == cardTable.getSuit()){
+                mov=true
+                break
+            }else{
+                if (currCard.valor == cardTable.getValorNum()){
+                    mov=true
+                }
+            }
+        }
+        return mov
     }
 
 }
