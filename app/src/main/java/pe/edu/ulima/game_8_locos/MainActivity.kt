@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
 
     private var turn: Int = 0
 
+    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -51,7 +53,6 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         if(!tieneMovimientos()){
             Toast.makeText(this,"Debe robar 1 carta", Toast.LENGTH_LONG).show()
             findViewById<Button>(R.id.btnDraw).setEnabled(true)
-            findViewById<Button>(R.id.btnPass).setEnabled(true)
         }
         //Evento Pasar Turno
         findViewById<Button>(R.id.btnPass).setOnClickListener {_: View ->
@@ -63,13 +64,13 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
             findViewById<TextView>(R.id.tviCurrPlayer).text = this.players[this.turn].name
             this.showCards()
             this.showRemainingCards()
+            this.players[this.turn].setPages()
             //Desactivar Button
             findViewById<Button>(R.id.btnPass).setEnabled(false)
             //Validar movimiento al cambiar de player
             if(!tieneMovimientos()){
                 Toast.makeText(this,"Debe robar 1 carta", Toast.LENGTH_LONG).show()
                 findViewById<Button>(R.id.btnDraw).setEnabled(true)
-                findViewById<Button>(R.id.btnPass).setEnabled(true)
             }
         }
 
@@ -89,6 +90,17 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         findViewById<Button>(R.id.btnNextPage).setOnClickListener{_: View ->
             this.players[this.turn].increasePage()
             this.showCards()
+        }
+
+        // Evento Robar una carta
+        findViewById<Button>(R.id.btnDraw).setOnClickListener {_: View ->
+            findViewById<Button>(R.id.btnDraw).setEnabled(false)
+            // Agregar card
+            this.players[this.turn].hand.add(this.deck.removeLast())
+            this.players[this.turn].setPages()
+            this.showCards()
+            this.showRemainingCards()
+            findViewById<Button>(R.id.btnPass).setEnabled(true)
         }
     }
 
@@ -210,16 +222,31 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         }
         var newCard = Card(numValor,suit)
         cardTable.setCard(newCard)
-        //
         val currPlayer = players[this.turn]
         currPlayer.hand.removeAt(currPlayer.buscarCarta(numValor, suit))
+        // Habilidades especiales
+        specialCard(valor)
         findViewById<Button>(R.id.btnPass).callOnClick()
+    }
+
+    private fun specialCard(valor:String){
+        if(valor=="K"){
+
+        }
+        if(valor=="J"){
+            if(this.turn < this.players.size - 1){
+                this.turn += 1
+            }else{
+                this.turn = 0
+            }
+        }
     }
 
     private fun tieneMovimientos():Boolean {
         val cardTable: CardView = findViewById(R.id.cardTable)
         var mov=false
         val currPlayer = players[this.turn]
+
         for(i in 0 until currPlayer.hand.size){
             var currCard = currPlayer.hand[i]
             if (currCard.suit == cardTable.getSuit()){

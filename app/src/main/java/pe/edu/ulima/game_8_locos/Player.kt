@@ -36,11 +36,28 @@ class Player(val num: Int, val name: String, var hand: MutableList<Card>) {
 
     fun buscarCarta(valor: Int, suit: String):Int{
         var cod:Int = 0
-        for(i in 0 until this.hand.size-1){
+        for(i in 0 until this.hand.size){
+            println(i)
             if(this.hand[i].valor==valor && this.hand[i].suit==suit){
                 cod = i
+                break
             }
         }
         return cod
+    }
+
+    fun setPages(){
+        if(hand.count()>8*4){
+            this.pages=5
+        }else if(hand.count()>8*3){
+            this.pages=4
+        }else if(hand.count()>8*2){
+            this.pages=3
+        }else if(hand.count()>8*1){
+            this.pages=2
+        }else{
+            this.pages=1
+        }
+
     }
 }
