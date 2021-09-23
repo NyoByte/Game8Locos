@@ -30,9 +30,20 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
     private var activePunishment:Boolean = false
     private var cantPunishment:Int=0
 
+    private var listName:MutableList<String> = ArrayList()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // Recibo de data
+        val name1 = intent.getBundleExtra("data")?.getString("namePlayer1").toString()
+        val name2 = intent.getBundleExtra("data")?.getString("namePlayer2").toString()
+        val name3 = intent.getBundleExtra("data")?.getString("namePlayer3").toString()
+        //Agregar a la listaName
+        this.listName.add(name1)
+        this.listName.add(name2)
+        this.listName.add(name3)
 
         //Crear las 52 cartas
         this.createDeck()
@@ -192,7 +203,7 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
             for(j in 1..8){
                 currHand.add(this.deck.removeLast())
             }
-            this.players.add(Player(i,"Player $i", currHand))
+            this.players.add(Player(i,this.listName[i-1], currHand))
             Log.i("MainActivity", "Dealed ${currHand.size} to player $i")
         }
     }
@@ -279,9 +290,10 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
 
     private fun endGame(){
         val tempName = players[this.turn].name
-        Toast.makeText(this, "El $tempName ha ganado", Toast.LENGTH_LONG).show()
-        val intent: Intent = Intent()
-        intent.setClass(this, LobbyActivity::class.java)
+        Toast.makeText(this, "$tempName ha ganado", Toast.LENGTH_LONG).show()
+        val intent = Intent(this, LobbyActivity::class.java)
+        val bundle = Bundle()
+        bundle.putString("ganador",tempName)
         startActivity(intent)
     }
 
