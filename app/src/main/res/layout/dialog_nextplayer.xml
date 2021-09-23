@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <pe.edu.ulima.game_8_locos.views.ApectRatioImageView
+        android:id="@+id/aviCoverT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:ratio="1"
+        app:srcCompat="@drawable/nextplayer" />
+
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ok"
+        app:layout_constraintEnd_toEndOf="@+id/tviNextPlayer"
+        app:layout_constraintStart_toStartOf="@+id/tviNextPlayer"
+        app:layout_constraintTop_toBottomOf="@+id/tviNextPlayer"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="341dp" />
+
+    <TextView
+        android:id="@+id/tviNextPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Player"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/aviCoverT"
+        app:layout_constraintTop_toBottomOf="@+id/aviCoverT" />
+</androidx.constraintlayout.widget.ConstraintLayout>

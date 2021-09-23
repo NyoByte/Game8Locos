@@ -13,7 +13,7 @@ class PregameDialog: AppCompatActivity() {
         setContentView(R.layout.dialog_pregame)
 
         findViewById<Button>(R.id.btnReady).setOnClickListener { v: View ->
-            val intent: Intent = Intent()
+            val intent = Intent()
             val bundle = Bundle()
 
             bundle.putString("namePlayer1", findViewById<EditText>(R.id.namePlayer1).text.toString())

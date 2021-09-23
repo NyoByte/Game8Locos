@@ -25,6 +25,14 @@
             android:name=".PregameDialog"
             android:theme="@style/Theme.AppCompat.Dialog">
         </activity>
+        <activity
+            android:name=".GanadorDialog"
+            android:theme="@style/Theme.AppCompat.Dialog">
+        </activity>
+        <activity
+            android:name=".NextplayerDialog"
+            android:theme="@style/Theme.AppCompat.Dialog">
+        </activity>
 
     </application>
 

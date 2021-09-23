@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
 
     private var activePunishment:Boolean = false
     private var cantPunishment:Int=0
+    private var hayRepetida = false
 
     private var listName:MutableList<String> = ArrayList()
 
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
             }else{
                 this.turn = 0
             }
+            //Evento mostrar turno
             findViewById<TextView>(R.id.tviCurrPlayer).text = this.players[this.turn].name
             this.showCards()
             this.showRemainingCards()
@@ -255,11 +257,20 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
                 Toast.makeText(this, "Puede aumentar el castigo o robar cartas", Toast.LENGTH_LONG).show()
             }
         }else {
-            if (suit == cardTable.getSuit()) {
-                jugarCarta(valor, suit)
-            } else {
-                if (valor == cardTable.getValor()) {
+            if(hayRepetida){
+                if(valor==cardTable.getValor()){
+                    hayRepetida = false
+                    jugarCarta(valor,suit)
+                }else{
+                    Toast.makeText(this, "Puede tirar doble o pasar", Toast.LENGTH_LONG).show()
+                }
+            }else {
+                if (suit == cardTable.getSuit()) {
                     jugarCarta(valor, suit)
+                } else {
+                    if (valor == cardTable.getValor()) {
+                        jugarCarta(valor, suit)
+                    }
                 }
             }
         }
@@ -282,38 +293,60 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         // Accion Ganar
         if(currPlayer.hand.count()==0){
             endGame()
+        }else {
+            // Habilidades especiales
+            specialCard(valor)
+            if (!hayRepetida) {
+                findViewById<Button>(R.id.btnPass).callOnClick()
+            } else {
+                // Volver a jugar con carta igual
+                findViewById<Button>(R.id.btnPass).setEnabled(true)
+                this.showCards()
+                this.showRemainingCards()
+            }
         }
-        // Habilidades especiales
-        specialCard(valor)
-        findViewById<Button>(R.id.btnPass).callOnClick()
     }
 
     private fun endGame(){
         val tempName = players[this.turn].name
         Toast.makeText(this, "$tempName ha ganado", Toast.LENGTH_LONG).show()
-        val intent = Intent(this, LobbyActivity::class.java)
+        val intent = Intent(this, GanadorDialog::class.java)
         val bundle = Bundle()
         bundle.putString("ganador",tempName)
+        intent.putExtra("data",bundle)
         startActivity(intent)
     }
 
-    private fun specialCard(valor:String){
-        if(valor=="K"){
-            activePunishment=true
-            cantPunishment+=3
-        }
-        // valor == Q +2 en cant no implementado por alcance
-        if(valor=="J"){
-            if(this.turn < this.players.size - 1){
+    private fun specialCard(valor:String) {
+        if (valor == "K") {
+            activePunishment = true
+            cantPunishment += 3
+        } else if (valor == "Q") {
+            // valor == Q +2 en cant no implementado por alcance
+        } else if (valor == "J") {
+            if (this.turn < this.players.size - 1) {
                 this.turn += 1
-            }else{
+            } else {
                 this.turn = 0
             }
+        } else {
+            // Repetidas patito
+            val currPlayer = players[this.turn]
+            var numValor:Int
+            when(valor){
+                "A" -> numValor=1
+                else -> numValor = Integer.parseInt(valor)
+            }
+            for (i in 0 until currPlayer.hand.size) {
+                var currCard = currPlayer.hand[i]
+                if (currCard.valor == numValor) {
+                    hayRepetida = true
+                    break
+                }
+            }
         }
-        // Repetidas patito
-        // * Analizar si hay cartas del mismo valor repetidas
-        //
     }
+
 
     private fun tieneMovimientos():Boolean {
         val cardTable: CardView = findViewById(R.id.cardTable)
