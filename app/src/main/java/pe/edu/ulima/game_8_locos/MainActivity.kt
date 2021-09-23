@@ -278,12 +278,10 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
     }
 
     private fun endGame(){
-        // Reiniciar juego
-        // * Cambiar a otro view felicitando la victoria y opción de new Game
         val tempName = players[this.turn].name
         Toast.makeText(this, "El $tempName ha ganado", Toast.LENGTH_LONG).show()
         val intent: Intent = Intent()
-        intent.setClass(this, MainActivity::class.java)
+        intent.setClass(this, LobbyActivity::class.java)
         startActivity(intent)
     }
 

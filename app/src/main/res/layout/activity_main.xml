@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2D512E"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
     <pe.edu.ulima.game_8_locos.views.CardView
         android:id="@+id/card7"
@@ -103,6 +104,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:text="Jugador 2: 5 cartas"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -113,6 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Jugador 3: 6 cartas"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/tviPlayer1"
         app:layout_constraintTop_toBottomOf="@+id/tviPlayer1" />
@@ -148,6 +151,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:text="Mazo: X cartas"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardTable" />
@@ -159,6 +163,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Jugador actual"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardTable" />
