@@ -10,18 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 class NextplayerDialog: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dialog_ganador)
+        setContentView(R.layout.dialog_nextplayer)
 
-        val winner = intent.getBundleExtra("data")?.getString("ganador")
-        findViewById<TextView>(R.id.tviGanador).text = winner
+        val nextPlayer = intent.getBundleExtra("data")?.getString("player")
+        findViewById<TextView>(R.id.tviNextPlayer).text = nextPlayer
 
         findViewById<Button>(R.id.btnOk).setOnClickListener { v: View ->
-
-            val intent = Intent(this, LobbyActivity::class.java)
-            val bundle = Bundle()
-            bundle.putString("ganador",winner)
-            intent.putExtra("data",bundle)
-            startActivityForResult(intent,20)
             finish()
         }
     }

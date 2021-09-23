@@ -79,6 +79,12 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
                 this.turn = 0
             }
             //Evento mostrar turno
+            val intent = Intent(this, NextplayerDialog::class.java)
+            val bundle = Bundle()
+            bundle.putString("player",this.players[this.turn].name)
+            intent.putExtra("data",bundle)
+            startActivity(intent)
+
             findViewById<TextView>(R.id.tviCurrPlayer).text = this.players[this.turn].name
             this.showCards()
             this.showRemainingCards()
