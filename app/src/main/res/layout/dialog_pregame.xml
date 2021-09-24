@@ -40,6 +40,7 @@
         android:hint="Ingrese al Player 3"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/namePlayer2"
         app:layout_constraintStart_toStartOf="@+id/namePlayer2"
         app:layout_constraintTop_toBottomOf="@+id/namePlayer2" />
@@ -48,10 +49,21 @@
         android:id="@+id/btnReady"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="16dp"
         android:text="Ready"
         app:layout_constraintEnd_toEndOf="@+id/namePlayer3"
         app:layout_constraintStart_toStartOf="@+id/namePlayer3"
+        app:layout_constraintTop_toBottomOf="@+id/namePlayer3" />
+
+    <Button
+        android:id="@+id/btnAddPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="+"
+        app:layout_constraintEnd_toStartOf="@+id/btnReady"
         app:layout_constraintTop_toBottomOf="@+id/namePlayer3" />
 
 

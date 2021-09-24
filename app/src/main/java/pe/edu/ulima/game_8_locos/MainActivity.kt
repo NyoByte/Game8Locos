@@ -22,8 +22,9 @@ import kotlin.math.min
 class MainActivity : AppCompatActivity(), OnCardClickListener {
     private var deck: MutableList<Card> = ArrayList()
     private var players:MutableList<Player> = ArrayList()
+    private var cardsOnTable: MutableList<Card> = ArrayList()
 
-    private val numPlayers: Int = 3
+    private var numPlayers: Int = 3
 
     private var turn: Int = 0
 
@@ -40,11 +41,19 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         // Recibo de data
         val name1 = intent.getBundleExtra("data")?.getString("namePlayer1").toString()
         val name2 = intent.getBundleExtra("data")?.getString("namePlayer2").toString()
-        val name3 = intent.getBundleExtra("data")?.getString("namePlayer3").toString()
+        val name3 = intent.getBundleExtra("data")?.getString("namePlayer3")?.toString()
         //Agregar a la listaName
         this.listName.add(name1)
         this.listName.add(name2)
-        this.listName.add(name3)
+
+        if(name3 != null){
+            this.listName.add(name3)
+            this.numPlayers = 3
+        }else{
+            this.numPlayers = 2
+            findViewById<TextView>(R.id.tviPlayer2).visibility = View.INVISIBLE
+        }
+
 
         //Crear las 52 cartas
         this.createDeck()
@@ -53,7 +62,7 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         this.dealCards()
 
         //Definir primer jugador
-        this.turn = (0..2).random()
+        this.turn = (0 until this.numPlayers-1).random()
         findViewById<TextView>(R.id.tviCurrPlayer).text = this.players[this.turn].name
 
         //Colocar carta en la mesa
@@ -141,6 +150,11 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
 
         // Evento Robar una carta
         findViewById<Button>(R.id.btnDraw).setOnClickListener {_: View ->
+            if(this.deck.isEmpty()) {
+                Toast.makeText(this,"Baraja vacía. Volviendo a barajar cartas en la mesa...", Toast.LENGTH_LONG).show()
+                this.deck.addAll(this.cardsOnTable)
+                this.cardsOnTable = ArrayList()
+            }
             findViewById<Button>(R.id.btnDraw).setEnabled(false)
             if(activePunishment){
                 for(i in 0 until cantPunishment){
@@ -165,7 +179,11 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
     private fun placeCardOnTable() {
         val cardTable: CardView = findViewById(R.id.cardTable)
 
-        cardTable.setCard(this.deck.removeLast())
+        val card = this.deck.removeLast();
+
+        cardTable.setCard(card)
+
+        this.cardsOnTable.add(card)
     }
 
     private fun showRemainingCards() {
@@ -294,6 +312,7 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         }
         var newCard = Card(numValor,suit)
         cardTable.setCard(newCard)
+        this.cardsOnTable.add(newCard)
         val currPlayer = players[this.turn]
         currPlayer.hand.removeAt(currPlayer.buscarCarta(numValor, suit))
         // Accion Ganar
@@ -306,6 +325,8 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
                 findViewById<Button>(R.id.btnPass).callOnClick()
             } else {
                 // Volver a jugar con carta igual
+                Toast.makeText(this,"Puedes jugar la carta repetida", Toast.LENGTH_LONG).show()
+
                 findViewById<Button>(R.id.btnPass).setEnabled(true)
                 this.showCards()
                 this.showRemainingCards()

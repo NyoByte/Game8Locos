@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 class LobbyActivity() : AppCompatActivity() {
 
+    var thirdPlayer: Boolean = false;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lobby)
@@ -37,10 +39,12 @@ class LobbyActivity() : AppCompatActivity() {
                 "namePlayer2",
                 findViewById<TextView>(R.id.tviJugador2).text.toString()
             )
-            bundle.putString(
-                "namePlayer3",
-                findViewById<TextView>(R.id.tviJugador3).text.toString()
-            )
+            if(this.thirdPlayer){
+                bundle.putString(
+                    "namePlayer3",
+                    findViewById<TextView>(R.id.tviJugador3).text.toString()
+                )
+            }
             intent.putExtra("data", bundle)
             startActivityForResult(intent, 20)
         }
@@ -57,6 +61,7 @@ class LobbyActivity() : AppCompatActivity() {
                 var name1 = data?.getBundleExtra("dialog_data")?.getString("namePlayer1")
                 var name2 = data?.getBundleExtra("dialog_data")?.getString("namePlayer2")
                 var name3 = data?.getBundleExtra("dialog_data")?.getString("namePlayer3")
+                this.thirdPlayer = data?.getBundleExtra("dialog_data")?.getBoolean("thirdPlayer")!!
                 if (name1 == "") {
                     name1 = "Player 1"
                 }
