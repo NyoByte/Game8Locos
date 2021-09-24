@@ -98,6 +98,8 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
             this.showCards()
             this.showRemainingCards()
             this.players[this.turn].setPages()
+            hayRepetida = false
+
             //Desactivar Button
             findViewById<Button>(R.id.btnPass).setEnabled(false)
             //Validar movimiento al cambiar de player
