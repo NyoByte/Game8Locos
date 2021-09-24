@@ -105,7 +105,7 @@
         android:layout_marginTop="32dp"
         android:text="Jugador 2: 5 cartas"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,7 +116,7 @@
         android:layout_marginTop="16dp"
         android:text="Jugador 3: 6 cartas"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/tviPlayer1"
         app:layout_constraintTop_toBottomOf="@+id/tviPlayer1" />
 
@@ -148,7 +148,7 @@
         android:id="@+id/tviMazo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="32dp"
         android:text="Mazo: X cartas"
         android:textColor="#FFFFFF"
@@ -161,7 +161,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:text="Jugador actual"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
@@ -184,6 +184,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
+        android:enabled="false"
         android:text="previous page"
         app:layout_constraintBottom_toTopOf="@+id/card5"
         app:layout_constraintStart_toStartOf="parent" />
@@ -194,9 +195,21 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:enabled="false"
         android:text="next page"
         app:layout_constraintBottom_toTopOf="@+id/card8"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Turno actual:"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/tviCurrPlayer"
+        app:layout_constraintStart_toStartOf="@+id/tviCurrPlayer" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

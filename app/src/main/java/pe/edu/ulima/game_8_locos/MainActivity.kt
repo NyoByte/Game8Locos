@@ -221,6 +221,13 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
                 card.visibility = View.INVISIBLE
             }
         }
+        if(currPlayer.hand.count()>8){
+            findViewById<Button>(R.id.btnPrevPage).isEnabled = true
+            findViewById<Button>(R.id.btnNextPage).isEnabled = true
+        }else{
+            findViewById<Button>(R.id.btnPrevPage).isEnabled = false
+            findViewById<Button>(R.id.btnNextPage).isEnabled = false
+        }
     }
 
     private fun dealCards() {
