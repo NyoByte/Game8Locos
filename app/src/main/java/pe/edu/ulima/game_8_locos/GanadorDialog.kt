@@ -22,7 +22,7 @@ class GanadorDialog: AppCompatActivity() {
             val bundle = Bundle()
             bundle.putString("ganador",winner)
             intent.putExtra("data",bundle)
-            startActivityForResult(intent,20)
+            setResult(RESULT_OK, intent)
             finish()
         }
     }

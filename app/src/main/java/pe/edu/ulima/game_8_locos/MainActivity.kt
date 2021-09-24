@@ -350,7 +350,8 @@ class MainActivity : AppCompatActivity(), OnCardClickListener {
         val bundle = Bundle()
         bundle.putString("ganador",tempName)
         intent.putExtra("data",bundle)
-        startActivity(intent)
+        setResult(RESULT_OK, intent)
+        finish()
     }
 
     private fun specialCard(valor:String) {

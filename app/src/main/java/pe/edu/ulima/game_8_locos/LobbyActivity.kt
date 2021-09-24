@@ -94,7 +94,7 @@ class LobbyActivity() : AppCompatActivity() {
                 }
                 var j = 1
 
-                for (i in 0 until 2) {
+                for (i in 0 until 3) {
                     // Aumentar partidas
                     val partidaId = resources.getIdentifier("tviPartida$j", "id", packageName)
                     var tempPartida = Integer.parseInt(findViewById<TextView>(partidaId).text.toString())
@@ -111,8 +111,11 @@ class LobbyActivity() : AppCompatActivity() {
                     }else{
                         tempDerrota +=1
                     }
+                    findViewById<TextView>(victoriaId).text = tempVictoria.toString()
+                    findViewById<TextView>(derrotaId).text = tempDerrota.toString()
                     j += 1
                 }
+                println(j)
             }
         }
     }
